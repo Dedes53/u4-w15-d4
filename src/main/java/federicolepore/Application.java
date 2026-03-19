@@ -6,6 +6,8 @@ import federicolepore.entities.Product;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class Application {
 
@@ -70,10 +72,18 @@ public class Application {
 
 
         // esercizio 1: raggruppare ordini per cliente con mappa [cliete][lista ordini]
-        
+        System.out.println("ESERCIZIO 1");
+        Map<Customer, List<Order>> ordersByCustomer = ordersList.stream() //avvio lo stream
+                .collect(Collectors.groupingBy(Order::getCustomer)); //per ogni ordine prendo il cliente associato
+
+        ordersByCustomer.forEach(((customer, orders) -> {
+            System.out.println("Cliente: " + customer.getName());
+            System.out.println("Ordini: " + orders);
+            System.out.println();
+        }));
 
         // esercizio 2: calcolare tot vendite per ogni cliente con mappa [cliente][importo tot ordini]
-
+        System.out.println("ESERCIZIO 2");
 
         // esercizio 3: trovare prodotti più costosi
 
