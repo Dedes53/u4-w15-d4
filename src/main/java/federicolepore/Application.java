@@ -112,6 +112,22 @@ public class Application {
 
         double media = totalByOrders.stream().reduce(0.0, Double::sum) / totalByOrders.size();
         System.out.println("Media delgi ordini: " + media);
+        System.out.println();
+
+
+        // esercizio 5: raggruppare i prodotti per categoria e calcolare la somma per ognuna di queste
+        System.out.println("ESERCZIO 5");
+        Map<String, Double> productByCategory = productsList.stream().
+                collect(Collectors.groupingBy(Product::getCategory,
+                        Collectors.summingDouble(Product::getPrice)
+                ));
+
+        productByCategory.forEach(
+                (category, total) -> {
+                    System.out.println("Categoria: " + category + "-> totale: " + total);
+                    System.out.println();
+                }
+        );
 
     }
 }
