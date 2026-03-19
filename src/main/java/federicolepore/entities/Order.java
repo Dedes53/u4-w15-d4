@@ -64,7 +64,8 @@ public class Order {
 
 
     public double calulateTotal() {
-        double total = products.stream().map(product -> product.getPrice()).reduce(0.0, (acc, currentPrice) -> acc + currentPrice);
+        double total = products.stream().mapToDouble(p -> p.getPrice()).sum();
+//        double total = products.stream().map(product -> product.getPrice()).reduce(0.0, (acc, currentPrice) -> acc + currentPrice);
         return total;
     }
 }
