@@ -85,6 +85,7 @@ public class Application {
         // esercizio 2: calcolare tot vendite per ogni cliente con mappa [cliente][importo tot ordini]
         System.out.println("ESERCIZIO 2");
 
+
         // esercizio 3: trovare prodotti più costosi
 
 

@@ -61,4 +61,10 @@ public class Order {
                 ", deliveryDate=" + deliveryDate + ", customer=" + customer +
                 ", products=" + products + "}";
     }
+
+
+    public double calulateTotal() {
+        double total = products.stream().map(product -> product.getPrice()).reduce(0.0, (acc, currentPrice) -> acc + currentPrice);
+        return total;
+    }
 }
