@@ -27,7 +27,7 @@ public class Application {
         Product p4 = new Product(4L, "Lego", "Baby", 25.00);
         Product p5 = new Product(5L, "Maglia bimbo", "Boys", 30.00);
         Product p6 = new Product(6L, "Scarpe bimbo", "Boys", 80.00);
-        Product p7 = new Product(7L, "Mouse", "Tech", 19.99);
+        Product p7 = new Product(7L, "Mouse", "Tech", 20.00);
 
         List<Product> productsList = List.of(p1, p2, p3, p4, p5, p6, p7);
 
@@ -56,7 +56,7 @@ public class Application {
                 LocalDate.of(2025, 1, 25),
                 Flanders,
                 "DELIVERED",
-                List.of(p5)
+                List.of(p5, p2)
         );
 
         Order o4 = new Order(
@@ -106,7 +106,12 @@ public class Application {
 
         // esercizio 4: calcolare media importi degli ordini da lista ordini
         System.out.println("ESERCIZIO 4");
-        double media = ordersList.stream().
+
+        List<Double> totalByOrders = ordersList.stream().map(Order -> Order.calulateTotal()).toList();
+        System.out.println("Importi degli ordini: " + totalByOrders);
+
+        double media = totalByOrders.stream().reduce(0.0, Double::sum) / totalByOrders.size();
+        System.out.println("Media delgi ordini: " + media);
 
     }
 }
