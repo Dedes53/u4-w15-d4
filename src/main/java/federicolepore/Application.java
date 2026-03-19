@@ -13,7 +13,6 @@ public class Application {
 
     public static void main(String[] args) {
 
-        double sconto = 0.90;
         //customer
         Customer Homer = new Customer(123456789, "homer", 1);
         Customer Marge = new Customer(123456710, "marge", 2);
@@ -82,8 +81,16 @@ public class Application {
             System.out.println();
         }));
 
+
         // esercizio 2: calcolare tot vendite per ogni cliente con mappa [cliente][importo tot ordini]
         System.out.println("ESERCIZIO 2");
+        Map<Customer, Double> totalByCustomer = ordersList.stream()
+                .collect(Collectors.groupingBy(Order::getCustomer, Collectors.summingDouble(Order::calulateTotal)));
+
+        totalByCustomer.forEach((customer, total) -> {
+            System.out.println("Cliente: " + customer.getName() + " -> totale acquisti: " + total);
+            System.out.println();
+        });
 
 
         // esercizio 3: trovare prodotti più costosi
