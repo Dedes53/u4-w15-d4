@@ -5,6 +5,7 @@ import federicolepore.entities.Order;
 import federicolepore.entities.Product;
 
 import java.time.LocalDate;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -94,10 +95,18 @@ public class Application {
 
 
         // esercizio 3: trovare prodotti più costosi
+        System.out.println("ESERCIZIO 3");
+        List<Product> mostExpensive = productsList.stream()
+                .sorted(Comparator.comparing(Product::getPrice).reversed()).toList();
 
+        mostExpensive.forEach(
+                Product -> System.out.println(Product.getName() + " " + Product.getPrice())
+        );
+        System.out.println();
 
         // esercizio 4: calcolare media importi degli ordini da lista ordini
-
+        System.out.println("ESERCIZIO 4");
+        double media = ordersList.stream().
 
     }
 }
